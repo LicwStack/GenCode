@@ -61,6 +61,7 @@
             this.button18 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.button15 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -369,11 +370,22 @@
             this.label3.TabIndex = 345;
             this.label3.Text = "实际位置：";
             // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(471, 208);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(75, 28);
+            this.button15.TabIndex = 346;
+            this.button15.Text = "Thread";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1222, 624);
+            this.Controls.Add(this.button15);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button18);
@@ -447,6 +459,7 @@
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button15;
     }
 }
 

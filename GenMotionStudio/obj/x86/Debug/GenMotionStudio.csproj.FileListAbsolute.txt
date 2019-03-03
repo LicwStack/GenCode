@@ -1,0 +1,17 @@
+F:\GenCode\GenMotionStudio\bin\Debug\GenMotionStudio.exe
+F:\GenCode\GenMotionStudio\bin\Debug\GenMotionStudio.pdb
+F:\GenCode\GenMotionStudio\obj\x86\Debug\TestMotionStudio.Form1.resources
+F:\GenCode\GenMotionStudio\obj\x86\Debug\GenMotionStudio.Properties.Resources.resources
+F:\GenCode\GenMotionStudio\obj\x86\Debug\GenMotionStudio.csproj.GenerateResource.Cache
+F:\GenCode\GenMotionStudio\obj\x86\Debug\GenMotionStudio.exe
+F:\GenCode\GenMotionStudio\obj\x86\Debug\GenMotionStudio.pdb
+F:\GenCode\GenMotionStudio\obj\x86\Debug\GenMotionStudio.csprojResolveAssemblyReference.cache
+E:\GenCode\GenMotionStudio\obj\x86\Debug\GenMotionStudio.exe
+E:\GenCode\GenMotionStudio\obj\x86\Debug\GenMotionStudio.pdb
+E:\GenCode\GenMotionStudio\bin\Debug\GenMotionStudio.exe
+E:\GenCode\GenMotionStudio\bin\Debug\GenMotionStudio.pdb
+E:\GenCode\GenMotionStudio\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\GenCode\GenMotionStudio\obj\x86\Debug\TestMotionStudio.Form1.resources
+E:\GenCode\GenMotionStudio\obj\x86\Debug\GenMotionStudio.Properties.Resources.resources
+E:\GenCode\GenMotionStudio\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\GenCode\GenMotionStudio\obj\x86\Debug\GenerateResource.write.1.tlog

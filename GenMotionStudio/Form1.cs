@@ -141,26 +141,31 @@ namespace TestMotionStudio
             sRtn = GTN.mc.GTN_StartEcatHoming(CORE, Axis);
 
             // 等待搜索原点完成
-            ushort sHomeSts = 0;
-            do
-            {
-                sRtn = GTN.mc.GTN_GetEcatHomingStatus(CORE, Axis, out sHomeSts);
-            } while (sHomeSts != 3);
+            //ushort sHomeSts = 0;
+            //do
+            //{
+            //    if (GetDi_1(15)) break;
+            //    sRtn = GTN.mc.GTN_GetEcatHomingStatus(CORE, Axis, out sHomeSts);
 
-            // 切换到位置控制模式
-            sRtn = GTN.mc.GTN_SetHomingMode(CORE, Axis, mode2);
+            //} while (sHomeSts != 3);
+
+            //// 切换到位置控制模式
+            //sRtn = GTN.mc.GTN_SetHomingMode(CORE, Axis, mode2);
 
             return true;
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (AxisGoHome(1))
+            AxisGoHome(1);
+
+            ushort sHomeSts = 0;
+            
+            sRtn = GTN.mc.GTN_GetEcatHomingStatus(CORE, Axis, out sHomeSts);
+
+            if (sHomeSts == 3)
             {
                 MessageBox.Show("回原点成功");
-            }
-            else
-            {
             }
         }
 
@@ -209,15 +214,50 @@ namespace TestMotionStudio
                 strResultDi += strTempDo;
             }
 
-            int Di = System.Convert.ToInt32(strResultDi);
+            int Di = System.Convert.ToInt32(strResultDi, 2);
 
             if ((Di & (1 << Di_N)) > 0)
             {
                 MessageBox.Show("Get Di_" + Di_N);
+                //return true;
             }
             else 
             {
                 MessageBox.Show("Di_" + Di_N + "没有输入");
+                //return false;
+            }
+        }
+
+        public bool GetDi_1(ushort Di_N)
+        {
+            ushort slave = 1;
+            ushort offset = 2;
+            ushort nSize = 2;
+
+            byte[] pValue = new byte[2];
+
+            sRtn = GTN.mc.GTN_EcatIOReadInput(CORE, slave, offset, nSize, out pValue[0]);
+
+
+            string strResultDi = string.Empty;
+            string strTempDo;
+            for (int i = 0; i < pValue.Length; i++)
+            {
+                strTempDo = System.Convert.ToString(pValue[pValue.Length - i - 1], 2);
+                strTempDo = strTempDo.Insert(0, new string('0', 8 - strTempDo.Length));
+
+                strResultDi += strTempDo;
+            }
+
+            int Di = System.Convert.ToInt32(strResultDi, 2);
+
+            if ((Di & (1 << Di_N)) > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -403,5 +443,40 @@ namespace TestMotionStudio
                 sRtn = GTN.mc.GTN_ZeroPos(CORE, Axis, 1);
             }
         }
+
+        private Thread thread;
+
+        bool ThreadStart = false;
+        private void button15_Click_1(object sender, EventArgs e)
+        {
+            if (!ThreadStart)
+            {
+                StartWork();
+                ThreadStart = true;
+            }
+        }
+
+        private void StartWork()
+        {
+            thread = new Thread(DoWork);
+            thread.Start();
+        }
+
+        private void DoWork()
+        {
+            while (true)
+            {
+                if (GetDi_1(1)) // 获取信号
+                {
+                    AxisGoHome(1);
+                }
+                if (GetDi_1(15)) 
+                {
+                    sRtn = GTN.mc.GTN_Stop(CORE, 1 << (Axis - 1), 1);   // 急停
+                }
+
+            }
+        }
+
     }
 }
